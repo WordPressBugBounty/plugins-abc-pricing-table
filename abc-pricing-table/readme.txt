@@ -3,8 +3,8 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: table, price, pricing, price table, pricing table
 Requires at least: 4.0
-Tested up to: 6.6.1
-Stable tag: 1.4.4
+Tested up to: 6.6.2
+Stable tag: 1.4.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -147,6 +147,10 @@ https://wordpress.org/support/plugin/abc-pricing-table/
 
 
 == Changelog ==
+
+= 1.4.5 =
+
+* Testing Pricing table plugin for wordpress 6.6.2
 
 = 1.4.4 =
 
