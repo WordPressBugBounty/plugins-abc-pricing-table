@@ -3,8 +3,8 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: table, price, pricing, price table, pricing table
 Requires at least: 4.0
-Tested up to: 6.6.2
-Stable tag: 1.4.6
+Tested up to: 6.7.1
+Stable tag: 1.4.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -88,7 +88,7 @@ You can add Unlimited packages with unlimited features.Your website visitors wil
 > * [Pricing Switcher](https://awplife.com/demo/pricing-table-premium/pricing-switcher/ "Pricing Switcher")
 > * [*Features True & False](https://awplife.com/demo/pricing-table-premium/pricing-table-example/ "*Features True & False")
 > * [Icon Piker Setings](https://awplife.com/demo/pricing-table-premium/pricing-table-example/ "Icon Piker Setings")
-> * [Image Or Video Support](https://awplife.com/demo/pricing-table-premium/pricing-table-25-template/ "Image Or Video Support")
+> * [Image Or Video Support](https://awplife.com/demo/pricing-table-premium/new-features/ "Image Or Video Support")
 > * Header color Option
 > *	Button color Option
 > * Heading Text Font Size
@@ -148,6 +148,11 @@ https://wordpress.org/support/plugin/abc-pricing-table/
 
 
 == Changelog ==
+
+= 1.4.7 =
+
+* Bug Fix: Fixed.
+* Testing Pricing table plugin for wordpress 6.7.1
 
 = 1.4.6 =
 
