@@ -7,7 +7,8 @@ wp_enqueue_script( 'apt-popper-min-js', APT_PLUGIN_URL . 'assets/js/popper.min.j
 wp_enqueue_script( 'apt-bootstrap-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap.min.js', array( 'jquery' ), '4.3.1', true );
 wp_enqueue_script( 'apt-bootstrap-iconset-all-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap-iconpicker-iconset-all.min.js', array( 'jquery' ), '1.10.0', true );
 wp_enqueue_script( 'apt-bootstrap-iconpicker-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap-iconpicker.min.js', array( 'jquery' ), '1.10.0', true );
-wp_enqueue_script( 'apt-color-picker-js', APT_PLUGIN_URL . 'assets/js/apt-color-picker.js', array( 'wp-color-picker' ), false, true );
+wp_enqueue_script( 'apt-color-picker-js', APT_PLUGIN_URL . 'assets/js/apt-color-picker.js', array( 'wp-color-picker' ), '1.0.0', true );
+
 wp_enqueue_style ( 'wp-color-picker' );
 
 // css

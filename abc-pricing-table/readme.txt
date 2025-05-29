@@ -1,10 +1,10 @@
-﻿=== Pricing Table – Responsive & Easy Pricing Table Plugin for WordPress ===
+﻿=== Pricing Table – Responsive & Easy Pricing Table ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
 Tags: pricing table, price table, responsive pricing, WordPress pricing plugin, price list
 Requires at least: 4.0
-Tested up to: 6.7.2
-Stable tag: 1.4.9
+Tested up to: 6.8.1
+Stable tag: 1.5.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -145,6 +145,12 @@ Yes, we offer a premium version with 25+ designs, pricing switcher, video/image 
 
 
 == Changelog ==
+
+= 1.5.0 =
+* Compatible with WordPress 6.8.1
+* Security patches applied
+* Sanitize bug fix
+* Minor bug fixes and code cleanup
 
 = 1.4.9 =
 * Updated readme.txt for SEO optimization
