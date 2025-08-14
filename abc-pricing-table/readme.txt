@@ -3,8 +3,9 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: pricing table, price table, responsive pricing, WordPress pricing plugin, price list
 Requires at least: 4.0
-Tested up to: 6.8.1
-Stable tag: 1.5.0
+Tested up to: 6.8.2
+Requires PHP: 7.2
+Stable tag: 1.5.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -65,7 +66,7 @@ https://youtu.be/TryUBPGwZKg
 > *	Fully responsive.
 > *	All Browser support.
 > *	Bootstrap 4.3.1 Based
-> * [25 Templet Design](https://awplife.com/demo/pricing-table-premium/ "25 Templet Design")
+> * [26 Templet Design](https://awplife.com/demo/pricing-table-premium/ "25 Templet Design")
 > * [Pricing Table With Sidebar](https://awplife.com/demo/pricing-table-premium/pricing-table-sidebar/ "Pricing Table With Sidebar")
 > * [Columns Settings](https://awplife.com/demo/pricing-table-premium/pricing-table-sidebar/ "Columns Settings")
 > * [Tooltip Feature](https://awplife.com/demo/pricing-table-premium/pricing-table-example/ "Tooltip Feature")
@@ -145,6 +146,9 @@ Yes, we offer a premium version with 25+ designs, pricing switcher, video/image 
 
 
 == Changelog ==
+
+= 1.5.1 =
+* Compatible with WordPress 6.8.2
 
 = 1.5.0 =
 * Compatible with WordPress 6.8.1
