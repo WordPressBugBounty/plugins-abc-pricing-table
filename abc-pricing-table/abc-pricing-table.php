@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 Plugin Name: Pricing Table – Responsive & Easy Pricing Table
 Plugin URI: http://awplife.com/code
 Description: A Responsive pricing table Amazing Easy To Use Tables, Table, Pricing, Widget, Shortcode- Irresistible CSS Based WordPress pricing table Plugin.
-Version: 1.5.1
+Version: 1.5.2
 Requires PHP:  7.0
 Author: A WP Life
 Author URI: http://awplife.com/
@@ -27,7 +27,7 @@ if (!class_exists('apt_pricingtable')) {
 		protected function _constants()
 		{
 			// Plugin Version
-			define('APT_PLUGIN_VER', '1.5.1');
+			define('APT_PLUGIN_VER', '1.5.2');
 
 			// Plugin Text Domain
 			define('APT_TXTDM', 'abc-pricing-table');

@@ -1,101 +1,81 @@
-﻿=== Pricing Table – Responsive & Easy Pricing Table ===
+﻿=== Pricing Table - Responsive & Easy ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
-Tags: pricing table, price table, responsive pricing, WordPress pricing plugin, price list
+Tags: pricing table, comparison table, price list, responsive pricing, subscription plans
 Requires at least: 4.0
-Tested up to: 6.8.2
+Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.5.1
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Create responsive and customizable pricing tables for WordPress with ease. Shortcodes, templates, and mobile-ready.
+Display pricing plans with responsive tables. Unlimited packages, 4 templates, shortcode support. Works with Elementor and Gutenberg.
 
 == Description ==
 
-= Responsive & Easy Pricing Table Plugin for WordPress =
+Pricing Table lets you add professional pricing tables to your WordPress site. Show your products, services, or subscription plans in a clean, organized layout that visitors can compare at a glance.
 
-**Pricing Table** is a powerful and lightweight WordPress plugin that allows you to create beautiful, responsive pricing tables in just a few clicks. Whether you're building a pricing comparison chart, subscription plans, or product feature tables — this plugin has you covered.
+**View Pro Demo:** **[Pricing Table Premium](https://awplife.com/demo/pricing-table-premium/)** 
+**More About Pro:** **[Pricing Table Premium Features](https://awplife.com/wordpress-plugins/pricing-table-wordpress-plugin/)**
+**Where To Buy:** **[Buy Pricing Table Premium](https://awplife.com/account/signup/pricing-table-premium)**
 
-Designed using modern HTML5 & CSS3 standards, this pricing table plugin works seamlessly across all devices and browsers.
+This pricing table builder works with shortcodes, so you can place tables anywhere — pages, posts, sidebars, or widget areas. Each table supports unlimited pricing packages with custom features, icons, and call-to-action buttons.
 
-🎯 **Why Choose This Pricing Table Plugin?**
-
-- Beginner-friendly UI for both new and advanced users.
-- Compatible with Gutenberg & Elementor.
-- Quickly add unlimited pricing plans with features.
-- Display anywhere using simple shortcodes or widgets.
-- Includes 4 built-in design templates.
-- Based on clean CSS3 and lightweight JavaScript.
-
-💡 Easily customize table colors, icons, headers, buttons, and more — without touching any code.
-
-✨ **Key Features:**
-
-- Responsive layout that works on all devices
-- 4 pre-designed pricing table templates
-- Show/hide features using ✔️ or ❌
-- Icon picker support
-- Header, button & feature color customizer
-- Unlimited pricing packages & features
-- Sidebar widget support via shortcode
-- Custom CSS option for advanced styling
-- Compatible with all major WordPress themes
-
-**Demo:** [View Premium Version Demo](https://awplife.com/demo/pricing-table-premium/)
-
-**Languages Available:**
-- English
-- Hindi
-- German
-- Spanish
-- Arabic
-- Indonesian
-- Portuguese
-- Chinese
-
-📽 **Watch Plugin Demo Video:**  
+**Video Tutorial**
 
 https://youtu.be/TryUBPGwZKg
 
+= What You Can Do =
 
-🧩 **Pro Version Highlights**  
+Create pricing comparison tables for:
 
-> *	Responsive Pricing Table
-> *	Compatible With Elementor Page Builder
-> *	Fully responsive.
-> *	All Browser support.
-> *	Bootstrap 4.3.1 Based
-> * [26 Templet Design](https://awplife.com/demo/pricing-table-premium/ "25 Templet Design")
-> * [Pricing Table With Sidebar](https://awplife.com/demo/pricing-table-premium/pricing-table-sidebar/ "Pricing Table With Sidebar")
-> * [Columns Settings](https://awplife.com/demo/pricing-table-premium/pricing-table-sidebar/ "Columns Settings")
-> * [Tooltip Feature](https://awplife.com/demo/pricing-table-premium/pricing-table-example/ "Tooltip Feature")
-> * [Pricing Switcher](https://awplife.com/demo/pricing-table-premium/pricing-switcher/ "Pricing Switcher")
-> * [*Features True & False](https://awplife.com/demo/pricing-table-premium/pricing-table-example/ "*Features True & False")
-> * [Icon Piker Setings](https://awplife.com/demo/pricing-table-premium/pricing-table-example/ "Icon Piker Setings")
-> * [Image Or Video Support](https://awplife.com/demo/pricing-table-premium/new-features/ "Image Or Video Support")
-> * Header color Option
-> *	Button color Option
-> * Heading Text Font Size
-> *	Feature Text Font Size
-> *	Button Text Font Size
-> *	Button Icon Settings 
-> *	Open Link Tab
-> *	Features Text Color
-> *	Youtube Video Support
-> *	Vimeo Video Support
-> *	Pricing Custom Image Support
-> *	Unlimited Color For Featured
-> *	Custom CSS Style
-> *	Easy To Implement
-> *	Add and remove Pricing Table
-> *	Display Pricing Table by Unique Post id.
-> *	Use via short-code.
+* SaaS subscription plans
+* Service packages (basic, standard, premium)
+* Product feature comparisons
+* Membership levels
+* Hosting or software pricing
 
-👉 [Upgrade to Pro](https://awplife.com/wordpress-plugins/pricing-table-premium/)
+= Free Version Features =
 
+* 4 ready-to-use pricing table templates
+* Unlimited pricing packages per table
+* Unlimited features per package
+* Responsive layout for mobile, tablet, and desktop
+* Header, button, and feature color customization
+* Icon picker for feature icons
+* Show/hide features with ✔️(right) or ❌(cross) marks
+* Shortcode support for pages, posts, and widgets
+* Sidebar widget integration
+* Custom CSS option for advanced styling
+* Works with Gutenberg and Elementor
+* Multi-language support (English, Hindi, German, Spanish, Arabic, Indonesian, Portuguese, Chinese)
 
+= Pro Version Features =
 
+* 26 additional template designs
+* Pricing switcher (monthly/yearly toggle)
+* Tooltip feature for detailed descriptions
+* YouTube and Vimeo video support
+* Custom image support in pricing cards
+* Advanced column layout settings
+* Button icon customization
+* Extended font size controls
+* Open link in new tab option
+* Priority support
+
+= More Pro Demos =
+
+**[Pricing Table With Sidebar](https://awplife.com/demo/pricing-table-premium/pricing-table-sidebar/)**
+**[Multi Columns Tables](https://awplife.com/demo/pricing-table-premium/pricing-table-sidebar/)**
+**[Tooltip On Features](https://awplife.com/demo/pricing-table-premium/pricing-table-example/)**
+**[Pricing Switcher](https://awplife.com/demo/pricing-table-premium/pricing-switcher/)**
+**[Features True & False](https://awplife.com/demo/pricing-table-premium/pricing-table-example/)**
+**[Icon Picker](https://awplife.com/demo/pricing-table-premium/pricing-table-example/)**
+**[Image Or Video Support](https://awplife.com/demo/pricing-table-premium/new-features/)**
+
+= Languages =
+
+Available in: English, Hindi, German, Spanish, Arabic, Indonesian, Portuguese, and Chinese.
 
 == Screenshots ==
 
@@ -123,32 +103,65 @@ https://youtu.be/TryUBPGwZKg
 
 7. Save your changes and view the page to see your pricing table live.
 
-For more help, visit the “DOC” section inside the plugin menu.
+For more help, visit the "DOC" section inside the plugin menu.
 
 
 == Frequently Asked Questions ==
 
+= How do I create a pricing table? =
+Go to "Pricing Table" in your WordPress dashboard, click "Add New," and fill in your plan details including name, price, features, and button text. Save and copy the shortcode to use on any page.
+
 = Can I use this plugin with Elementor or Gutenberg? =
-Yes, this pricing table plugin is fully compatible with both Elementor and Gutenberg editors. Just paste the shortcode in any widget or block.
+Yes, this pricing table works with both Elementor and Gutenberg editors. Just paste the shortcode in any widget or block.
 
 = How do I display the pricing table on my website? =
 After creating a pricing table, copy its shortcode and paste it into any page, post, or sidebar widget.
 
 = Is the plugin responsive? =
-Yes! All pricing tables are mobile-friendly and adapt perfectly to screen sizes including desktop, tablet, and mobile.
+Yes. All pricing tables adapt to screen sizes including desktop, tablet, and mobile devices.
 
 = How many pricing tables can I create? =
 Unlimited. You can create as many pricing tables as needed with unlimited plans inside each table.
 
-= Is there a pro version of this plugin? =
-Yes, we offer a premium version with 25+ designs, pricing switcher, video/image support, tooltips, and more. [View Pro Features](https://awplife.com/wordpress-plugins/pricing-table-premium/)
+= Can I add a featured or highlighted plan? =
+Yes, you can highlight a specific plan using the featured option. This makes one plan stand out from the others to draw visitor attention.
+
+= Does this work with WooCommerce? =
+The pricing table displays information and links. You can connect buttons to WooCommerce product pages or checkout URLs for a smooth buying experience.
+
+= Can I customize the button text and link? =
+Yes, each pricing package has its own button with customizable text, link URL, and color settings.
+
+= How do I show or hide specific features? =
+Use the feature toggle options to show a checkmark (✔️) for included features or an X (❌) for excluded ones in each plan.
+
+= Can I use different colors for each plan? =
+Yes, you can set individual header colors, button colors, and feature colors for each pricing package.
+
+= Is there a limit on the number of tables I can create? =
+No, you can create unlimited pricing tables. Each table gets its own unique shortcode.
+
+= What is the difference between free and pro versions? =
+The free version includes 4 templates and essential features. The pro version adds 26 templates, pricing switcher, tooltips, video support, and more customization options. [View Pro Features](https://awplife.com/wordpress-plugins/pricing-table-wordpress-plugin/)
+
+= Does the plugin slow down my website? =
+No, the plugin uses lightweight CSS and minimal JavaScript. It does not load unnecessary resources on pages where the shortcode is not used.
+
+= Can I import or export pricing tables? =
+The pro version supports exporting and importing pricing table settings for backup or migration purposes.
+
+= Where can I get support? =
+For free version support, use the WordPress.org support forum. Pro users receive priority support through the developer website.
 
 
 
 == Changelog ==
 
+= 1.5.2 =
+* Compatible with WordPress 6.9
+
 = 1.5.1 =
-* Compatible with WordPress 6.8.2
+* Compatible with WordPress 6.8.3
 
 = 1.5.0 =
 * Compatible with WordPress 6.8.1
