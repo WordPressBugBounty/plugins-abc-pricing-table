@@ -35,8 +35,8 @@
 		bottom: 12px;
 	}
 
-	.active .headings_<?php echo esc_html($apt_id); ?>,
-	.active .price-value_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .headings_<?php echo esc_html($apt_id); ?>,
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .price-value_<?php echo esc_html($apt_id); ?> {
 		color:
 			<?php echo esc_attr($feature_heading_text_color); ?>
 			!important;
@@ -45,20 +45,20 @@
 			!important;
 	}
 
-	.active .pricingTable-header_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .pricingTable-header_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_heading_background_color); ?>
 		;
 	}
 
-	.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_background_hover_color); ?>
 		;
 	}
 
-	.active:hover .pricing-content_<?php echo esc_html($apt_id); ?> ul:before,
-	.active:hover .pricing-content_<?php echo esc_html($apt_id); ?> ul:after {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .pricing-content_<?php echo esc_html($apt_id); ?> ul:before,
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .pricing-content_<?php echo esc_html($apt_id); ?> ul:after {
 		background: linear-gradient(to bottom,
 				<?php echo esc_attr($feature_background_hover_color); ?>
 				50%,
@@ -66,14 +66,14 @@
 				50%) !important;
 	}
 
-	.active .read_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .read_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_button_color); ?>
 			!important;
 		color: <?php echo esc_attr($feature_button_heading_color); ?> !important;
 	}
 
-	.active:hover .read_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .read_<?php echo esc_html($apt_id); ?> {
 		background-color:
 			<?php echo esc_attr($feature_button_hover_color); ?>
 			!important;
@@ -107,7 +107,7 @@
 		transition: all 0.3s ease 0s;
 	}
 
-	h3 {
+	.pricingTable_<?php echo esc_html($apt_id); ?> h3 {
 		color:
 			<?php echo esc_attr($heading_text_color); ?>
 		;
@@ -118,8 +118,8 @@
 		color: #fff;
 	}
 
-	.active:hover .price-value_<?php echo esc_html($apt_id); ?>,
-	.active:hover .headings_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .price-value_<?php echo esc_html($apt_id); ?>,
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .headings_<?php echo esc_html($apt_id); ?> {
 		color: #fff !important;
 	}
 

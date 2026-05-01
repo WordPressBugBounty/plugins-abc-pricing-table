@@ -3,15 +3,14 @@ if (!defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-add_shortcode('APT', 'pricingtable_shortcode');
-function pricingtable_shortcode($post_id)
+add_shortcode('APT', 'abc_pt_pricingtable_shortcode');
+function abc_pt_pricingtable_shortcode($post_id)
 {
 
 	ob_start();
 
-	$pricing_post_settings = get_post_meta($post_id['id'], 'apt_pricing_table_data_' . $post_id['id'], true);
-
-	$apt_id = $post_id['id'];
+	$apt_id = isset($post_id['id']) ? absint($post_id['id']) : get_the_ID();
+	$pricing_post_settings = get_post_meta($apt_id, 'apt_pricing_table_data_' . $apt_id, true);
 
 	if (isset($post_id['template'])) {
 		$pricing_table_design = $post_id['template'];   // template set by shortcode
@@ -139,6 +138,22 @@ function pricingtable_shortcode($post_id)
 	wp_enqueue_style('apt-pricing-frontend-bootstrap-css');
 	wp_enqueue_style('apt-all-css');
 
+	// Generate and Add Inline CSS
+	ob_start();
+	echo $apt_custom_css;
+	if ($pricing_table_design == 'template1') {
+		include 'assets/css/template1.php';
+	} elseif ($pricing_table_design == 'template2') {
+		include 'assets/css/template2.php';
+	} elseif ($pricing_table_design == 'template3') {
+		include 'assets/css/template3.php';
+	} elseif ($pricing_table_design == 'template4') {
+		include 'assets/css/template4.php';
+	}
+	$generated_css = ob_get_clean();
+	$generated_css = str_replace(array('<style>', '</style>'), '', $generated_css);
+	wp_add_inline_style('apt-all-css', $generated_css);
+
 	// fetch all pricing table
 	$all_pricingtable = array(
 		'p' => $apt_id,
@@ -148,7 +163,6 @@ function pricingtable_shortcode($post_id)
 	$pricing_loop = new WP_Query($all_pricingtable);
 	$count = count($pricing_name);
 
-	// foreach($pricing_name as $new_name){
 	?>
 
 	<div class="row abc-pricing">
@@ -156,31 +170,11 @@ function pricingtable_shortcode($post_id)
 		for ($apt_i = 0; $apt_i < $count; $apt_i++) {
 			?>
 
-			<style>
-				<?php echo esc_html($apt_custom_css); ?>
-			</style>
 			<div class="<?php echo esc_attr($total_cols); ?>">
 				<?php
 				if ($pricing_loop->have_posts()) {
 					while ($pricing_loop->have_posts()):
 						$pricing_loop->the_post();
-
-						if ($pricing_table_design == 'template1') {
-							$template_number = 'template1';
-							include 'assets/css/template1.php';
-						}
-						if ($pricing_table_design == 'template2') {
-							$template_number = 'template2';
-							include 'assets/css/template2.php';
-						}
-						if ($pricing_table_design == 'template3') {
-							$template_number = 'template3';
-							include 'assets/css/template3.php';
-						}
-						if ($pricing_table_design == 'template4') {
-							$template_number = 'template4';
-							include 'assets/css/template4.php';
-						}
 
 						if ($pricing_table_design == 'template1') {
 							?>
@@ -223,12 +217,12 @@ function pricingtable_shortcode($post_id)
 													<li style="text-align: center">
 														<?php
 														// change 0 and 1 to cross and right icon
-														if (strchr('cross', $bit)) {
+														if (trim($bit) === 'cross') {
 															echo $icon_cross;
-														} elseif (strchr('right', $bit)) {
+														} elseif (trim($bit) === 'right') {
 															echo $icon_right;
 														} else {
-															echo $bit;
+															echo esc_html($bit);
 														}
 														?>
 													</li>
@@ -301,12 +295,12 @@ function pricingtable_shortcode($post_id)
 													<li><i class="fas fa-angle-double-right"></i>
 														<?php
 														// change 0 and 1 to cross and right icon
-														if (strchr('cross', $bit)) {
+														if (trim($bit) === 'cross') {
 															echo $icon_cross;
-														} elseif (strchr('right', $bit)) {
+														} elseif (trim($bit) === 'right') {
 															echo $icon_right;
 														} else {
-															echo $bit;
+															echo esc_html($bit);
 														}
 														?>
 													</li>
@@ -367,12 +361,12 @@ function pricingtable_shortcode($post_id)
 													<li>
 														<?php
 														// change 0 and 1 to cross and right icon
-														if (strchr('cross', $bit)) {
+														if (trim($bit) === 'cross') {
 															echo $icon_cross;
-														} elseif (strchr('right', $bit)) {
+														} elseif (trim($bit) === 'right') {
 															echo $icon_right;
 														} else {
-															echo $bit;
+															echo esc_html($bit);
 														}
 														?>
 													</li>
@@ -427,12 +421,12 @@ function pricingtable_shortcode($post_id)
 													<li>
 														<?php
 														// change 0 and 1 to cross and right icon
-														if (strchr('cross', $bit)) {
+														if (trim($bit) === 'cross') {
 															echo $icon_cross;
-														} elseif (strchr('right', $bit)) {
+														} elseif (trim($bit) === 'right') {
 															echo $icon_right;
 														} else {
-															echo $bit;
+															echo esc_html($bit);
 														}
 														?>
 													</li>

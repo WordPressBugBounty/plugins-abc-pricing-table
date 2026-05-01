@@ -6,7 +6,7 @@
 		border: 1px solid #dce2ed;
 	}
 
-	.active .pricingTable-header_<?php echo esc_html($apt_id); ?>>.heading_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .pricingTable-header_<?php echo esc_html($apt_id); ?>>.heading_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_heading_background_color); ?>
 			!important;
@@ -15,31 +15,31 @@
 		;
 	}
 
-	.active .heading_<?php echo esc_html($apt_id); ?>>h3 {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .heading_<?php echo esc_html($apt_id); ?>>h3 {
 		color:
 			<?php echo esc_attr($feature_heading_text_color); ?>
 		;
 	}
 
-	.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> .heading_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> .heading_<?php echo esc_html($apt_id); ?> {
 		background-color:
 			<?php echo esc_attr($feature_background_hover_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_button_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?> {
 		color:
 			<?php echo esc_attr($feature_button_heading_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?>:hover {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?>:hover {
 		background-color:
 			<?php echo esc_attr($feature_button_hover_color); ?>
 			!important;
@@ -139,7 +139,7 @@
 		;
 	}
 
-	.active .heading_<?php echo esc_html($apt_id); ?>:after {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .heading_<?php echo esc_html($apt_id); ?>:after {
 		content: "Sale";
 		width: 50px;
 		height: 50px;

@@ -14,7 +14,7 @@
 		;
 	}
 
-	h3 {
+	.pricingTable_<?php echo esc_html($apt_id); ?> h3 {
 		color:
 			<?php echo esc_attr($heading_text_color); ?>
 		;
@@ -31,43 +31,43 @@
 		padding-top: 25px;
 	}
 
-	.active .heading_<?php echo esc_html($apt_id); ?>>h3 {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .heading_<?php echo esc_html($apt_id); ?>>h3 {
 		color:
 			<?php echo esc_attr($feature_heading_text_color); ?>
 		;
 	}
 
-	.active .pricingTable-header_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .pricingTable-header_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_heading_background_color); ?>
 		;
 	}
 
-	.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_background_hover_color); ?>
 		;
 	}
 
-	.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> .heading_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .pricingTable-header_<?php echo esc_html($apt_id); ?> .heading_<?php echo esc_html($apt_id); ?> {
 		background-color:
 			<?php echo esc_attr($feature_background_hover_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_button_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?> {
 		color:
 			<?php echo esc_attr($feature_button_heading_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?>:hover {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?>:hover {
 		background-color:
 			<?php echo esc_attr($feature_button_hover_color); ?>
 			!important;
@@ -154,7 +154,7 @@
 		transition: all 0.5s ease 0s;
 	}
 
-	.active .pricingContent_<?php echo esc_html($apt_id); ?> ul li:before {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .pricingContent_<?php echo esc_html($apt_id); ?> ul li:before {
 		color:
 			<?php echo esc_attr($feature_heading_background_color); ?>
 		;

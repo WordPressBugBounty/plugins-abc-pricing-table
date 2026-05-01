@@ -3,22 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 // js
-wp_enqueue_script( 'apt-popper-min-js', APT_PLUGIN_URL . 'assets/js/popper.min.js', array( 'jquery' ), '2.0', true );
-wp_enqueue_script( 'apt-bootstrap-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap.min.js', array( 'jquery' ), '4.3.1', true );
-wp_enqueue_script( 'apt-bootstrap-iconset-all-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap-iconpicker-iconset-all.min.js', array( 'jquery' ), '1.10.0', true );
-wp_enqueue_script( 'apt-bootstrap-iconpicker-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap-iconpicker.min.js', array( 'jquery' ), '1.10.0', true );
-wp_enqueue_script( 'apt-color-picker-js', APT_PLUGIN_URL . 'assets/js/apt-color-picker.js', array( 'wp-color-picker' ), '1.0.0', true );
-
-wp_enqueue_style ( 'wp-color-picker' );
-
-// css
-wp_enqueue_style( 'apt-bootstrap-css', APT_PLUGIN_URL . 'assets/css/pricing-admin-bootstrap.css', array(), '4.3.1' ); 
-wp_enqueue_style( 'apt-bootstrap-iconpicker-css', APT_PLUGIN_URL . 'assets/css/bootstrap-iconpicker.min.css', array(), '1.10.0' ); 
-wp_enqueue_style( 'apt-toogle-button-css', APT_PLUGIN_URL . 'assets/css/toogle-button.css'); 
-wp_enqueue_style( 'apt-styles-css', APT_PLUGIN_URL . 'assets/css/styles.css'); 
-wp_enqueue_style( 'metabox-css', APT_PLUGIN_URL . 'assets/css/metabox.css'); 
-wp_enqueue_style( 'apt-all-css', APT_PLUGIN_URL . 'assets/css/all.css', array(), '5.15.2' ); 
-wp_enqueue_style( 'team-setting-css', APT_PLUGIN_URL . 'assets/css/team-setting.css'); 
+// Assets handled via admin_enqueue_scripts hook in main file
 
 // code
 $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $post->ID, true );
@@ -53,7 +38,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 		<div class="bhoechie-tab-content active">
 			<div class="aad-btn text-center">
 				<h3><?php esc_html_e( 'Click On Add Column To Add New Table', 'abc-pricing-table' ); ?></h3>
-				<button type="button" id="pricing_appending" class="btn-default" onclick="return add_new_column()" aria-hidden="true"><span class="dashicons dashicons-plus icon_new"></span> <?php esc_html_e( 'ADD COLUMN', 'abc-pricing-table' ); ?></button>
+				<button type="button" id="pricing_appending" class="btn-default" onclick="return ABC_PT_Admin.add_new_column()" aria-hidden="true"><span class="dashicons dashicons-plus icon_new"></span> <?php esc_html_e( 'ADD COLUMN', 'abc-pricing-table' ); ?></button>
 				<button type="button" id="pricing_shortcode" class="btn-default" data-toggle="modal" data-target="#myModal"><span class="dashicons dashicons-arrow-right-alt icon_new_short"></span> <?php esc_html_e( 'GET SHORTCODE', 'abc-pricing-table' ); ?></button>
 			</div>
 			<div style="font-size: 20px"> <?php esc_html_e( 'Note:[Features] Type cross for (cross) icon', 'abc-pricing-table' ); ?> '<i class="fa fa-times"></i>'  <?php esc_html_e( 'and type (right) for right icon! ', 'abc-pricing-table' ); ?><i class="fa fa-check"></i>' </div> <p></p>
@@ -82,7 +67,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 							<input type="radio" name="featured_button[<?php echo esc_attr( $apt_i ); ?>]" id="featured_button2[<?php echo esc_attr( $apt_i ); ?>]" value="false" <?php if ( $featured_button == 'false' ) { echo 'checked=checked';} ?> >
 							<label for="featured_button2[<?php echo esc_attr( $apt_i ); ?>]"><?php esc_html_e( 'No', 'abc-pricing-table' ); ?></label>
 						</div>
-						<a data-toggle="tooltip" data-placement="top" title="Delete table" class="time" id="pri_delete" onclick="return delete_column('column_<?php echo esc_attr( $apt_i ); ?>')"><span class="dashicons dashicons-trash"></span></a>
+						<a data-toggle="tooltip" data-placement="top" title="Delete table" class="time" id="pri_delete" onclick="return ABC_PT_Admin.delete_column('column_<?php echo esc_attr( $apt_i ); ?>')"><span class="dashicons dashicons-trash"></span></a>
 						<input type="text" id="pricing_name[]" class="text" name="pricing_name[]" placeholder="<?php esc_html_e( 'Name', 'abc-pricing-table' ); ?>"  value="<?php echo esc_html( $pricing_post_settings['pricing_name'][ $apt_i ] ); ?>">
 					</div>
 					<ul>
@@ -164,7 +149,8 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 					</div>
 					<hr>
 				</div>
-				<div class="row pro-feature">
+				<!-- Removed Pro Features for Compliance -->
+				<div class="row pro-feature" style="display: none;">
 					<h1 style="color: red">Pro Version Templates</h1>
 					<img src="<?php echo esc_url(plugin_dir_url( __FILE__ ).'img/set1.png'); ?>">
 					<img src="<?php echo esc_url(plugin_dir_url( __FILE__ ).'img/set2.png'); ?>">
@@ -328,7 +314,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 			</div>
 			
-			<div class="row pro-feature">
+			<div class="row pro-feature" style="display: none;">
 				<div class="col-md-4">
 					<div class="ma_field_discription">
 						<h5><?php esc_html_e( 'Heading Font Size', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
@@ -337,12 +323,12 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 				<div class="col-md-8">
 					<div class="ma_field p-4">
-						<input type="range" class="custom-range" id="apt_heading_size1" name="apt_heading_size" min="10" max="50" value="15" onchange="return display_range_value(this.id, this.value);">
+						<input type="range" class="custom-range" id="apt_heading_size1" name="apt_heading_size" min="10" max="50" value="15" onchange="return ABC_PT_Admin.display_range_value(this.id, this.value);">
 						<span id="apt_heading_size1-value" class="badge badge-info pt-2 pb-2 pr-2 pl-2">15</span>
 					</div>
 				</div>
 			</div>
-			<div class="row pro-feature">
+			<div class="row pro-feature" style="display: none;">
 				<div class="col-md-4">
 					<div class="ma_field_discription">
 						<h5><?php esc_html_e( 'Feature Font Size', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
@@ -351,12 +337,12 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 				<div class="col-md-8">
 					<div class="ma_field p-4">
-						<input type="range" class="custom-range" id="apt_feature_size1" name="apt_feature_size" min="10" max="50" value="15" onchange="return display_range_value(this.id, this.value);">
+						<input type="range" class="custom-range" id="apt_feature_size1" name="apt_feature_size" min="10" max="50" value="15" onchange="return ABC_PT_Admin.display_range_value(this.id, this.value);">
 						<span id="apt_feature_size1-value" class="badge badge-info pt-2 pb-2 pr-2 pl-2">15</span>
 					</div>
 				</div>
 			</div>
-			<div class="row pro-feature">
+			<div class="row pro-feature" style="display: none;">
 				<div class="col-md-4">
 					<div class="ma_field_discription">
 						<h5><?php esc_html_e( 'Button Text Font Size', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
@@ -365,12 +351,12 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 				<div class="col-md-8">
 					<div class="ma_field p-4">
-						<input type="range" class="custom-range" id="apt_button_size1" name="apt_button_size" min="10" max="50" value="15" onchange="return display_range_value(this.id, this.value);">
+						<input type="range" class="custom-range" id="apt_button_size1" name="apt_button_size" min="10" max="50" value="15" onchange="return ABC_PT_Admin.display_range_value(this.id, this.value);">
 						<span id="apt_button_size1-value" class="badge badge-info pt-2 pb-2 pr-2 pl-2">15</span>
 					</div>
 				</div>
 			</div>
-			<div class="row pro-feature">
+			<div class="row pro-feature" style="display: none;">
 				<div class="col-md-4">
 					<div class="ma_field_discription">
 						<h5><?php esc_html_e( 'Open Link Tab', 'abc-pricing-table' ); ?><span style="color:red; font-size: 20px;">(Pro)</span></h5>
@@ -526,7 +512,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 					</div>	
 				</div>	
 			</div>
-			<div class="row pro-feature">
+			<div class="row pro-feature" style="display: none;">
 				<div class="col-md-2">
 					<div class="ma_field_discription">
 						<h5><?php esc_html_e( 'Features Text Color', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
@@ -668,7 +654,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 			</div>
 			
-			<div class="row pro-feature">
+			<div class="row pro-feature" style="display: none;">
 				<div class="col-md-2">
 					<div class="ma_field_discription">
 						<h5><?php esc_html_e( 'Features Text Color', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
@@ -709,7 +695,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 							$apt_custom_css = '';
 						}
 						?>
-						<textarea name="apt_custom_css" id="apt_custom_css" style="width: 50% !important; height: 150px;"><?php echo $apt_custom_css; ?></textarea>
+						<textarea name="apt_custom_css" id="apt_custom_css" style="width: 50% !important; height: 150px;"><?php echo esc_textarea( $apt_custom_css ); ?></textarea>
 					</div>
 				</div>
 			</div>	
@@ -728,7 +714,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				<div class="modal-body center">
 					<input type="text" name="abc-pricing-shortcode" id="abc-pricing-shortcode" value="<?php echo '[APT id=' . esc_attr( $post->ID ) . ']'; ?>" readonly style="height: 60px; text-align: center; font-size: 24px; width: 50%; border: 2px dashed;">
 					<p></p>
-					<input type="button" class="button button-primary" onclick="return ABCCopyShortcode();" readonly value="Copy Shortcode" />
+					<input type="button" class="button button-primary" onclick="return ABC_PT_Admin.copy_shortcode();" readonly value="Copy Shortcode" />
 					<span id="copy-msg" class="button button-primary" style="display:none; background-color:#32CD32; color:#FFFFFF; margin-left:4px; border-radius: 4px;">copied</span>
 				</div>
 				<div class="modal-footer">
@@ -739,19 +725,6 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 	</div>
 
 	<script>
-		function ABCCopyShortcode() {
-			var copyText = document.getElementById('abc-pricing-shortcode');
-			copyText.select();
-			document.execCommand('copy');
-			
-			//fade in and out copied message
-			jQuery('#copy-msg').fadeIn('1000', 'linear');
-			jQuery('#copy-msg').fadeOut(2500,'swing');
-		}
-	</script>
-	
-<!--js code-->
-<script>
 
 	var pricing_table_design = jQuery('input[name="pricing_table_design"]:checked').val();
 	if(pricing_table_design == "template1") {
@@ -802,197 +775,193 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 		
 	});
 	
-	//color-picker
-	(function( jQuery ) {
-		jQuery(function() {
+	(function($) {
+		$(document).ready(function() {
 			// Add Color Picker 
-			jQuery('#heading_text_color').wpColorPicker();
-			jQuery('#heading_background_color').wpColorPicker();
-			jQuery('#background_hover_color').wpColorPicker();
-			jQuery('#button_color').wpColorPicker();
-			jQuery('#button_heading_color').wpColorPicker();
-			jQuery('#button_hover_color').wpColorPicker();
-			jQuery('#apt_feature_color').wpColorPicker();
-			jQuery('#apt_icon_color').wpColorPicker();
-				//featured color
-			jQuery('#feature_heading_text_color').wpColorPicker();
-			jQuery('#feature_heading_background_color').wpColorPicker();
-			jQuery('#feature_background_hover_color').wpColorPicker();
-			jQuery('#feature_button_color').wpColorPicker();
-			jQuery('#feature_button_heading_color').wpColorPicker();
-			jQuery('#feature_button_hover_color').wpColorPicker();
-			jQuery('#apt_featured_text_color').wpColorPicker();
-			jQuery('#apt_featured_icon_color').wpColorPicker();
+			$('#heading_text_color, #heading_background_color, #background_hover_color, #button_color, #button_heading_color, #button_hover_color, #apt_feature_color, #apt_icon_color, #feature_heading_text_color, #feature_heading_background_color, #feature_background_hover_color, #feature_button_color, #feature_button_heading_color, #feature_button_hover_color, #apt_featured_text_color, #apt_featured_icon_color').wpColorPicker();
 			
-		});
-	})( jQuery );
-	
-	jQuery(document).ajaxComplete(function() {
-		jQuery('#heading_text_color, heading_background_color, button_color, button_heading_color, background_hover_color, button_hover_color, feature_heading_text_color, feature_heading_background_color, feature_background_hover_color, feature_button_color, feature_button_heading_color, apt_feature_color, apt_icon_color, apt_featured_icon_color, apt_featured_text_color, feature_button_hover_color').wpColorPicker();
-	});
-	// function generate new cloumn
-	function add_new_column() {
-		var total_cols = jQuery('#total_cols').val();
-		var columns_class_name = "column_" + total_cols;
-		var iconpick_class_name = "iconpick_" + total_cols;
-		var new_col_html = ''+
-		'<div id="columns[]" class="pri_main_div col-md-4 '+columns_class_name+'">' +
-			'<div class="pri_head">' +
-				'<div class="switch-field em_size_field col-md-6" data-toggle="tooltip" data-placement="top" title="This Table Will Be Featured" aria-hidden="true">' +
-					'<input type="radio" name="featured_button['+total_cols+']" id="featured_button1['+total_cols+']" value="true" >' +
-						'<label for="featured_button1['+total_cols+']"><?php esc_html_e( "Yes", "abc-pricing-table" ); ?></label>' +
-					'<input type="radio" name="featured_button['+total_cols+']" id="featured_button2['+total_cols+']" value="false" checked >' +
-						'<label for="featured_button2['+total_cols+']"><?php esc_html_e( "No", "abc-pricing-table" ); ?></label>' +
-				'</div>' +	
-				'<a data-toggle="tooltip" data-placement="top" title="Delete table" class="time" id="pri_delete" onclick=delete_column("'+columns_class_name+'");><span class="dashicons dashicons-trash"></span></a>' +	
-				'<input type="text" id="pricing_name" class="text" name="pricing_name[]" placeholder="<?php esc_html_e( "Name", "abc-pricing-table" ); ?>" value="">' +
-			'</div>' +
-			'<ul>' +
-				'<li>' +
-					'<input type="text" id="pricing_price[]" name="pricing_price[]"" class="text" placeholder="<?php esc_html_e( 'Pricing', "abc-pricing-table" ); ?>" value="">' +
-				'</li>' +
-				'<li>' +
-					'<input type="text" id="pricing_plan[]" name="pricing_plan[]" class="text" placeholder="<?php esc_html_e( 'Pricing Plan', "abc-pricing-table" ); ?>" value="">' +
-				'</li>' +
-				'<li class="features">' +
-					'<textarea type="text" id="pricing_features[]" name="pricing_features[]" class="text" placeholder="<?php esc_html_e( 'Pricing Features', 'abc-pricing-table' ); ?>" rows="7"></textarea>' +
-				'</li>' +
-				'<li>' +
-					'<input type="text" id="pricing_btn_text[]" name="pricing_btn_text[]" class="text" placeholder="<?php esc_html_e( 'Button Text', 'abc-pricing-table' ); ?>" value="">' +
-				'</li>' +
-				'<li>' +
-					'<input type="text" id="pricing_btn_url[]" name="pricing_btn_url[]" class="text" placeholder="<?php esc_html_e( 'Button Url', 'abc-pricing-table' ); ?>" value="">' +
-				'</li>' +
-			'</ul>' +
-		'</div>';
-		
-		var new_icon_picker = '<button type="button" value="" id="pricing_icon_pick[]" name="pricing_icon_pick[]" class="'+iconpick_class_name+' '+columns_class_name+' target_picker btn btn-default" data-iconset="fontawesome" data-icon="fa-wifi" role="iconpicker"></button>';
-		
-		jQuery('#iconpicker-container').append(new_icon_picker);
-		
-		jQuery('#pricing-container').append(new_col_html);
-		
-		var total_cols = parseInt(jQuery('#total_cols').val());
-		jQuery('#total_cols').val(total_cols + 1);
-		jQuery('[data-toggle="tooltip"]').tooltip();
-		jQuery('.target_picker').iconpicker();
-	}
-	
-	// delete button
-	function delete_column(col_id){
-		if (confirm('Are sure to delete this columns from table?')) {
-			jQuery( "."+ col_id ).fadeOut( 1000, function() {
-				jQuery( "."+ col_id ).remove();
-				var total_cols = parseInt(jQuery('#total_cols').val());
-				//jQuery('#total_cols').val(total_cols - 1);
+			$(document).ajaxComplete(function() {
+				$('#heading_text_color, #heading_background_color, #button_color, #button_heading_color, #background_hover_color, #button_hover_color, #feature_heading_text_color, #feature_heading_background_color, #feature_background_hover_color, #feature_button_color, #feature_button_heading_color, #apt_feature_color, #apt_icon_color, #apt_featured_icon_color, #apt_featured_text_color, #feature_button_hover_color').wpColorPicker();
 			});
+
+			$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+				e.preventDefault();
+				$(this).siblings('a.active').removeClass("active");
+				$(this).addClass("active");
+				var index = $(this).index();
+				$("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+				$("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+			});
+
+			// Layout selection logic
+			var alwselectedlayout = $('[name=pricing_table_design]:checked').val();
+			function updateLayoutClasses(layout) {
+				$('.pricing_layout_one, .pricing_layout_two, .pricing_layout_three, .pricing_table_four').removeClass('team_layout');
+				if(layout == 'template1') $('.pricing_layout_one').addClass('team_layout');
+				if(layout == 'template2') $('.pricing_layout_two').addClass('team_layout');
+				if(layout == 'template3') $('.pricing_layout_three').addClass('team_layout');
+				if(layout == 'template4') $('.pricing_table_four').addClass('team_layout');
+			}
+			updateLayoutClasses(alwselectedlayout);
+
+
+		});
+
+		// Namespace for admin functions
+		window.ABC_PT_Admin = {
+			copy_shortcode: function() {
+				var copyText = document.getElementById("abc-pricing-shortcode");
+				if (copyText) {
+					copyText.select();
+					document.execCommand("copy");
+					$('#copy-msg').fadeIn(1000).fadeOut(2500);
+				}
+			},
+			add_new_column: function() {
+				var total_cols = $('#total_cols').val();
+				var columns_class_name = "column_" + total_cols;
+				var iconpick_class_name = "iconpick_" + total_cols;
+				var new_col_html = ''+
+				'<div id="columns[]" class="pri_main_div col-md-4 '+columns_class_name+'">' +
+					'<div class="pri_head">' +
+						'<div class="switch-field em_size_field col-md-6" data-toggle="tooltip" data-placement="top" title="This Table Will Be Featured" aria-hidden="true">' +
+							'<input type="radio" name="featured_button['+total_cols+']" id="featured_button1['+total_cols+']" value="true" >' +
+								'<label for="featured_button1['+total_cols+']"><?php esc_html_e( "Yes", "abc-pricing-table" ); ?></label>' +
+							'<input type="radio" name="featured_button['+total_cols+']" id="featured_button2['+total_cols+']" value="false" checked >' +
+								'<label for="featured_button2['+total_cols+']"><?php esc_html_e( "No", "abc-pricing-table" ); ?></label>' +
+						'</div>' +	
+						'<a data-toggle="tooltip" data-placement="top" title="Delete table" class="time" id="pri_delete" onclick=ABC_PT_Admin.delete_column("'+columns_class_name+'");><span class="dashicons dashicons-trash"></span></a>' +	
+						'<input type="text" id="pricing_name" class="text" name="pricing_name[]" placeholder="<?php esc_html_e( "Name", "abc-pricing-table" ); ?>" value="">' +
+					'</div>' +
+					'<ul>' +
+						'<li>' +
+							'<input type="text" id="pricing_price[]" name="pricing_price[]"" class="text" placeholder="<?php esc_html_e( 'Pricing', "abc-pricing-table" ); ?>" value="">' +
+						'</li>' +
+						'<li>' +
+							'<input type="text" id="pricing_plan[]" name="pricing_plan[]" class="text" placeholder="<?php esc_html_e( 'Pricing Plan', "abc-pricing-table" ); ?>" value="">' +
+						'</li>' +
+						'<li class="features">' +
+							'<textarea type="text" id="pricing_features[]" name="pricing_features[]" class="text" placeholder="<?php esc_html_e( 'Pricing Features', 'abc-pricing-table' ); ?>" rows="7"></textarea>' +
+						'</li>' +
+						'<li>' +
+							'<input type="text" id="pricing_btn_text[]" name="pricing_btn_text[]" class="text" placeholder="<?php esc_html_e( 'Button Text', 'abc-pricing-table' ); ?>" value="">' +
+						'</li>' +
+						'<li>' +
+							'<input type="text" id="pricing_btn_url[]" name="pricing_btn_url[]" class="text" placeholder="<?php esc_html_e( 'Button Url', 'abc-pricing-table' ); ?>" value="">' +
+						'</li>' +
+					'</ul>' +
+				'</div>';
+				
+				var new_icon_picker = '<button type="button" value="" id="pricing_icon_pick[]" name="pricing_icon_pick[]" class="'+iconpick_class_name+' '+columns_class_name+' target_picker btn btn-default" data-iconset="fontawesome" data-icon="fa-wifi" role="iconpicker"></button>';
+				
+				$('#iconpicker-container').append(new_icon_picker);
+				$('#pricing-container').append(new_col_html);
+				
+				var current_total = parseInt($('#total_cols').val());
+				$('#total_cols').val(current_total + 1);
+				$('[data-toggle="tooltip"]').tooltip();
+				$('.target_picker').iconpicker();
+			},
+			delete_column: function(col_id) {
+				if (confirm('Are sure to delete this columns from table?')) {
+					$( "."+ col_id ).fadeOut( 1000, function() {
+						$( "."+ col_id ).remove();
+					});
+				}
+			},
+			display_range_value: function(id, value) {
+				var slider = document.getElementById(id);
+				var output = document.getElementById(id+"-value");
+				if (slider && output) {
+					output.innerHTML = slider.value;
+					slider.oninput = function() {
+						output.innerHTML = this.value;
+					}
+				}
+			}
+		};
+	})(jQuery);
+
+(function($) {
+	$(document).ready(function() {
+		var alwselectedlayout = $('[name=pricing_table_design]:checked').val();
+		if(alwselectedlayout == 'template1') {
+			$('.pricing_layout_one').addClass('team_layout'); 	
+		} else {
+			$('.pricing_layout_one').removeClass('team_layout');	
 		}
-	}
-	
-	var alwselectedlayout = jQuery('[name=pricing_table_design]:checked').val();
-	if(alwselectedlayout == 'template1') {
-		jQuery('.pricing_layout_one').addClass('team_layout'); 	
-		
-	} else {
-		jQuery('.pricing_layout_one').removeClass('team_layout');	
-	}
-		
-	if(alwselectedlayout == 'template2') {
-		jQuery('.pricing_layout_two').addClass('team_layout'); 
-		
-		
-	} else {
-		jQuery('.pricing_layout_two').removeClass('team_layout');
-	}
-	
-	if(alwselectedlayout == 'template3') {
-		jQuery('.pricing_layout_three').addClass('team_layout'); 
-		
-	} else {
-		jQuery('.pricing_layout_three').removeClass('team_layout'); 
-	}
-	if(alwselectedlayout == 'template4') {
-		jQuery('.pricing_table_four').addClass('team_layout'); 
-		
-	} else {
-		jQuery('.pricing_table_four').removeClass('team_layout'); 
-	}
-			
-	jQuery(document).ready(function() {
-		jQuery('input[type=radio][name=pricing_table_design]').change(function() {
-			var alwselectedlayout = jQuery('[name=pricing_table_design]:checked').val();
-			
+		if(alwselectedlayout == 'template2') {
+			$('.pricing_layout_two').addClass('team_layout'); 
+		} else {
+			$('.pricing_layout_two').removeClass('team_layout');
+		}
+		if(alwselectedlayout == 'template3') {
+			$('.pricing_layout_three').addClass('team_layout'); 
+		} else {
+			$('.pricing_layout_three').removeClass('team_layout'); 
+		}
+		if(alwselectedlayout == 'template4') {
+			$('.pricing_table_four').addClass('team_layout'); 
+		} else {
+			$('.pricing_table_four').removeClass('team_layout'); 
+		}
+
+		$('input[type=radio][name=pricing_table_design]').change(function() {
+			var alwselectedlayout = $('[name=pricing_table_design]:checked').val();
 			if(alwselectedlayout == 'template1') {
-				jQuery('.pricing_layout_one').addClass('team_layout');	
-				jQuery('#heading_text_color').iris('color', '#ffffff');
-				jQuery('#heading_background_color').iris('color', '#962744');
-				jQuery('#background_hover_color').iris('color', '#ff4266');
-				jQuery('#button_color').iris('color', '#962744');
-				jQuery('#button_heading_color').iris('color', '#ffffff');
-				jQuery('#button_hover_color').iris('color', '#ff4266');
+				$('.pricing_layout_one').addClass('team_layout');	
+				$('#heading_text_color').iris('color', '#ffffff');
+				$('#heading_background_color').iris('color', '#962744');
+				$('#background_hover_color').iris('color', '#ff4266');
+				$('#button_color').iris('color', '#962744');
+				$('#button_heading_color').iris('color', '#ffffff');
+				$('#button_hover_color').iris('color', '#ff4266');
 			} else {
-				jQuery('.pricing_layout_one').removeClass('team_layout'); 
+				$('.pricing_layout_one').removeClass('team_layout'); 
 			}
-			
 			if(alwselectedlayout == 'template2') {
-				jQuery('.pricing_layout_two').addClass('team_layout'); 
-				jQuery('#heading_text_color').iris('color', '#ffffff');
-				jQuery('#heading_background_color').iris('color', '#F26547');
-				jQuery('#background_hover_color').iris('color', '#F28168');
-				jQuery('#button_color').iris('color', '#F26547');
-				jQuery('#button_heading_color').iris('color', '#ffffff');
-				jQuery('#button_hover_color').iris('color', '#F28168');
+				$('.pricing_layout_two').addClass('team_layout'); 
+				$('#heading_text_color').iris('color', '#ffffff');
+				$('#heading_background_color').iris('color', '#F26547');
+				$('#background_hover_color').iris('color', '#F28168');
+				$('#button_color').iris('color', '#F26547');
+				$('#button_heading_color').iris('color', '#ffffff');
+				$('#button_hover_color').iris('color', '#F28168');
 			} else {
-				jQuery('.pricing_layout_two').removeClass('team_layout'); 
+				$('.pricing_layout_two').removeClass('team_layout'); 
 			}
-			
 			if(alwselectedlayout == 'template3') {
-				jQuery('.pricing_layout_three').addClass('team_layout'); 
-				jQuery('#heading_text_color').iris('color', '#ffffff');
-				jQuery('#heading_background_color').iris('color', '#1E73BE');
-				jQuery('#background_hover_color').iris('color', '#4D4D4D');
-				jQuery('#button_color').iris('color', '#1E73BE');
-				jQuery('#button_heading_color').iris('color', '#ffffff');
-				jQuery('#button_hover_color').iris('color', '#4D4D4D');
+				$('.pricing_layout_three').addClass('team_layout'); 
+				$('#heading_text_color').iris('color', '#ffffff');
+				$('#heading_background_color').iris('color', '#1E73BE');
+				$('#background_hover_color').iris('color', '#4D4D4D');
+				$('#button_color').iris('color', '#1E73BE');
+				$('#button_heading_color').iris('color', '#ffffff');
+				$('#button_hover_color').iris('color', '#4D4D4D');
 			} else {
-				jQuery('.pricing_layout_three').removeClass('team_layout'); 
+				$('.pricing_layout_three').removeClass('team_layout'); 
 			}
-			
 			if(alwselectedlayout == 'template4') {
-				jQuery('.pricing_table_four').addClass('team_layout'); 
-				jQuery('#heading_text_color').iris('color', '#ffffff');
-				jQuery('#heading_background_color').iris('color', '#1ABC9C');
-				jQuery('#background_hover_color').iris('color', '#1ABC9C');
-				jQuery('#button_color').iris('color', '#1ABC9C');
-				jQuery('#button_heading_color').iris('color', '#ffffff');
-				jQuery('#button_hover_color').iris('color', '#1ABC9C');
+				$('.pricing_table_four').addClass('team_layout'); 
+				$('#heading_text_color').iris('color', '#ffffff');
+				$('#heading_background_color').iris('color', '#1ABC9C');
+				$('#background_hover_color').iris('color', '#1ABC9C');
+				$('#button_color').iris('color', '#1ABC9C');
+				$('#button_heading_color').iris('color', '#ffffff');
+				$('#button_hover_color').iris('color', '#1ABC9C');
 			} else {
-				jQuery('.pricing_table_four').removeClass('team_layout'); 
+				$('.pricing_table_four').removeClass('team_layout'); 
 			}
-			
+		});
+
+		$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
+			e.preventDefault();
+			$(this).siblings('a.active').removeClass("active");
+			$(this).addClass("active");
+			var index = $(this).index();
+			$("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+			$("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
 		});
 	});
-
-// range bar value display
-function display_range_value(id, value) {
-	var slider = document.getElementById(id);
-	var output = document.getElementById(id+"-value");
-	output.innerHTML = slider.value; // display the default value
-
-	// Update the current slider value (each time you drag the slider handle)
-	slider.oninput = function() {
-		output.innerHTML = this.value;
-	}
-}
-	
-	// tab
-	jQuery("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-		e.preventDefault();
-		jQuery(this).siblings('a.active').removeClass("active");
-		jQuery(this).addClass("active");
-		var index = jQuery(this).index();
-		jQuery("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-		jQuery("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-	});
-	
+})(jQuery);
 </script>

@@ -1,11 +1,11 @@
-﻿=== Pricing Table - Responsive & Easy ===
+=== Pricing Table - Responsive & Easy ===
 Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkhan007, sharikkhan007, zishlife, FARAZFRANK
 Donate link: https://paypal.me/awplife
 Tags: pricing table, comparison table, price list, responsive pricing, subscription plans
 Requires at least: 4.0
-Tested up to: 6.9
+Tested up to: 6.9.4
 Requires PHP: 7.2
-Stable tag: 1.5.2
+Stable tag: 1.5.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -156,6 +156,10 @@ For free version support, use the WordPress.org support forum. Pro users receive
 
 
 == Changelog ==
+
+= 1.5.3=
+* Compatible with WordPress 6.9.4
+* WordPress.org Plugin Development Guidelines Fixed In this plugin
 
 = 1.5.2 =
 * Compatible with WordPress 6.9

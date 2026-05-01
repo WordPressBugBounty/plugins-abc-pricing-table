@@ -19,7 +19,7 @@
 		;
 	}
 
-	h3 {
+	.pricingTable_<?php echo esc_html($apt_id); ?> h3 {
 		color:
 			<?php echo esc_attr($heading_text_color); ?>
 		;
@@ -44,7 +44,9 @@
 	}
 
 	.pricingTable_<?php echo esc_html($apt_id); ?> .btn-block_<?php echo esc_html($apt_id); ?>:hover {
-		background-color: <?php echo esc_attr($button_hover_color); ?> !important;
+		background-color:
+			<?php echo esc_attr($button_hover_color); ?>
+			!important;
 	}
 
 	.btn-block_<?php echo esc_html($apt_id); ?> {
@@ -65,43 +67,43 @@
 		border-radius: 10px 10px 0 0;
 	}
 
-	.active .pricingTable-header_<?php echo esc_html($apt_id); ?> .heading_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .pricingTable-header_<?php echo esc_html($apt_id); ?> .heading_<?php echo esc_html($apt_id); ?> {
 		color:
 			<?php echo esc_attr($feature_heading_text_color); ?>
 		;
 	}
 
-	.active .heading-background_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .heading-background_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_heading_background_color); ?>
 		;
 	}
 
-	.active:hover .heading {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active:hover .heading {
 		background-color:
 			<?php echo esc_attr($feature_background_hover_color); ?>
 		;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?> {
 		background:
 			<?php echo esc_attr($feature_button_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?> {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?> {
 		color:
 			<?php echo esc_attr($feature_button_heading_color); ?>
 			!important;
 	}
 
-	.active .btn-block_<?php echo esc_html($apt_id); ?>:hover {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .btn-block_<?php echo esc_html($apt_id); ?>:hover {
 		background-color:
 			<?php echo esc_attr($feature_button_hover_color); ?>
 			!important;
 	}
 
-	.active .pricingContent_<?php echo esc_html($apt_id); ?>>ul>li:before {
+	.pricingTable_<?php echo esc_html($apt_id); ?>.active .pricingContent_<?php echo esc_html($apt_id); ?>>ul>li:before {
 		color:
 			<?php echo esc_attr($feature_heading_background_color); ?>
 			!important;
@@ -151,25 +153,25 @@
 		margin: 10px 0 0 0;
 	}
 
-	.pricingContent>ul {
+	.pricingTable_<?php echo esc_html($apt_id); ?> .pricingContent>ul {
 		padding: 0;
 		list-style: none;
 		margin-bottom: 0;
 	}
 
-	.pricingContent>ul>li {
+	.pricingTable_<?php echo esc_html($apt_id); ?> .pricingContent>ul>li {
 		border-top: 1px solid #dbdbdb;
 		padding: 10px 0;
 		text-align: center;
 		transition: 0.4s ease-in-out;
 	}
 
-	.pricingContent>ul>li:hover {
+	.pricingTable_<?php echo esc_html($apt_id); ?> .pricingContent>ul>li:hover {
 		padding-left: 15px;
 		transition: 0.4s ease-in-out;
 	}
 
-	.pricingContent>ul>li:last-child {
+	.pricingTable_<?php echo esc_html($apt_id); ?> .pricingContent>ul>li:last-child {
 		border-bottom: 1px solid #dbdbdb;
 	}
 
