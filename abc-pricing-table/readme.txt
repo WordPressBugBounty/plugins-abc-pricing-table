@@ -3,9 +3,9 @@ Contributors: awordpresslife, razipathhan, hanif0991, muhammadshahid, fkfaisalkh
 Donate link: https://paypal.me/awplife
 Tags: pricing table, comparison table, price list, responsive pricing, subscription plans
 Requires at least: 4.0
-Tested up to: 6.9.4
+Tested up to: 7.0
 Requires PHP: 7.2
-Stable tag: 1.5.3
+Stable tag: 1.5.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -157,6 +157,17 @@ For free version support, use the WordPress.org support forum. Pro users receive
 
 == Changelog ==
 
+= 1.5.4 =
+* Compatible with WordPress 7.0
+* Fixed frontend CSS loading by properly enqueuing core stylesheets and rendering dynamic template styles
+* Enqueued inline scripts into external JS files to adhere to WP.org guidelines
+* Removed hidden trialware/pro-feature elements to comply with Guideline 5
+* Removed TGMPA (TGM Plugin Activation) library and recommendation code
+* Added late escaping for custom CSS and template icon HTML outputs
+* Added nonce verification to plugin cache refresh links for enhanced security
+* Refactored shortcode rendering by removing redundant WP_Query execution
+* Updated admin capabilities, static meta box IDs, and input field handling
+
 = 1.5.3=
 * Compatible with WordPress 6.9.4
 * WordPress.org Plugin Development Guidelines Fixed In this plugin
@@ -216,5 +227,5 @@ For free version support, use the WordPress.org support forum. Pro users receive
 
 
 == Upgrade Notice ==
-Latest version includes compatibility updates for WordPress 6.7.2 and minor bug fixes. We recommend updating to enjoy the latest features and improvements.
+Latest version includes compatibility updates for WordPress 6.9.4, security improvements, and code quality fixes. We recommend updating to enjoy the latest features and improvements.
 

@@ -50,7 +50,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 					$total_columns = 0;
 				}
 				?>
-				<input type="hidden" id="total_cols" name="total_cols" class="total_cols" value="<?php echo esc_attr( $total_columns ); ?>">
+				<input type="hidden" id="apt_column_count" name="apt_column_count" class="total_cols" value="<?php echo esc_attr( $total_columns ); ?>">
 				<?php if ( is_array( $pricing_post_settings ) ) { for ( $apt_i = 0; $apt_i < $total_columns; $apt_i++ ) { ?>
 				<div class="pri_main_div col-md-4 column_<?php echo esc_attr( $apt_i ); ?>">
 					<div class="pri_head">
@@ -68,22 +68,22 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 							<label for="featured_button2[<?php echo esc_attr( $apt_i ); ?>]"><?php esc_html_e( 'No', 'abc-pricing-table' ); ?></label>
 						</div>
 						<a data-toggle="tooltip" data-placement="top" title="Delete table" class="time" id="pri_delete" onclick="return ABC_PT_Admin.delete_column('column_<?php echo esc_attr( $apt_i ); ?>')"><span class="dashicons dashicons-trash"></span></a>
-						<input type="text" id="pricing_name[]" class="text" name="pricing_name[]" placeholder="<?php esc_html_e( 'Name', 'abc-pricing-table' ); ?>"  value="<?php echo esc_html( $pricing_post_settings['pricing_name'][ $apt_i ] ); ?>">
+						<input type="text" id="pricing_name_<?php echo esc_attr( $apt_i ); ?>" class="text" name="pricing_name[]" placeholder="<?php esc_html_e( 'Name', 'abc-pricing-table' ); ?>"  value="<?php echo esc_html( $pricing_post_settings['pricing_name'][ $apt_i ] ); ?>">
 					</div>
 					<ul>
 						<li>
-							<input type="text" id="pricing_price" name="pricing_price[]" class="text" placeholder="<?php esc_html_e( 'Pricing', 'abc-pricing-table' ); ?>" value="<?php echo esc_attr( $pricing_post_settings['pricing_price'][ $apt_i ] ); ?>">
+							<input type="text" id="pricing_price_<?php echo esc_attr( $apt_i ); ?>" name="pricing_price[]" class="text" placeholder="<?php esc_html_e( 'Pricing', 'abc-pricing-table' ); ?>" value="<?php echo esc_attr( $pricing_post_settings['pricing_price'][ $apt_i ] ); ?>">
 						</li>
 						<li>
-							<input type="text" id="pricing_plan" name="pricing_plan[]" class="text" placeholder="<?php esc_html_e( 'Pricing Plan', 'abc-pricing-table' ); ?>" value="<?php echo esc_attr( $pricing_post_settings['pricing_plan'][ $apt_i ] ); ?>">
+							<input type="text" id="pricing_plan_<?php echo esc_attr( $apt_i ); ?>" name="pricing_plan[]" class="text" placeholder="<?php esc_html_e( 'Pricing Plan', 'abc-pricing-table' ); ?>" value="<?php echo esc_attr( $pricing_post_settings['pricing_plan'][ $apt_i ] ); ?>">
 						</li>
 						<li class="features">
-							<textarea type="text" id="pricing_features" name="pricing_features[]" class="text" placeholder="<?php esc_html_e( 'Pricing Features', 'abc-pricing-table' ); ?>" rows="7"><?php echo esc_html( $pricing_post_settings['pricing_features'][ $apt_i ] ); ?></textarea>							</li>
+							<textarea id="pricing_features_<?php echo esc_attr( $apt_i ); ?>" name="pricing_features[]" class="text" placeholder="<?php esc_html_e( 'Pricing Features', 'abc-pricing-table' ); ?>" rows="7"><?php echo esc_html( $pricing_post_settings['pricing_features'][ $apt_i ] ); ?></textarea>							</li>
 						<li>
-							<input type="text" id="pricing_btn_text" name="pricing_btn_text[]" class="text" placeholder="<?php esc_html_e( 'Button Text', 'abc-pricing-table' ); ?>" value="<?php echo esc_html( $pricing_post_settings['pricing_btn_text'][ $apt_i ] ); ?>">	
+							<input type="text" id="pricing_btn_text_<?php echo esc_attr( $apt_i ); ?>" name="pricing_btn_text[]" class="text" placeholder="<?php esc_html_e( 'Button Text', 'abc-pricing-table' ); ?>" value="<?php echo esc_html( $pricing_post_settings['pricing_btn_text'][ $apt_i ] ); ?>">	
 						</li>
 						<li>
-							<input type="text" id="pricing_btn_url" name="pricing_btn_url[]" class="text" placeholder="<?php esc_html_e( 'Button Url', 'abc-pricing-table' ); ?>" value="<?php echo esc_url( $pricing_post_settings['pricing_btn_url'][ $apt_i ] ); ?>">	
+							<input type="text" id="pricing_btn_url_<?php echo esc_attr( $apt_i ); ?>" name="pricing_btn_url[]" class="text" placeholder="<?php esc_html_e( 'Button Url', 'abc-pricing-table' ); ?>" value="<?php echo esc_url( $pricing_post_settings['pricing_btn_url'][ $apt_i ] ); ?>">	
 						</li>
 					</ul>
 				</div>
@@ -149,14 +149,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 					</div>
 					<hr>
 				</div>
-				<!-- Removed Pro Features for Compliance -->
-				<div class="row pro-feature" style="display: none;">
-					<h1 style="color: red">Pro Version Templates</h1>
-					<img src="<?php echo esc_url(plugin_dir_url( __FILE__ ).'img/set1.png'); ?>">
-					<img src="<?php echo esc_url(plugin_dir_url( __FILE__ ).'img/set2.png'); ?>">
-					<img src="<?php echo esc_url(plugin_dir_url( __FILE__ ).'img/set3.png'); ?>">
-					<img src="<?php echo esc_url(plugin_dir_url( __FILE__ ).'img/set4.png'); ?>">
-				</div>
+
 		</div>
 		
 		<div class="bhoechie-tab-content">
@@ -314,66 +307,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 			</div>
 			
-			<div class="row pro-feature" style="display: none;">
-				<div class="col-md-4">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Heading Font Size', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-						<p><?php esc_html_e( 'Pricing Heading Name Font Size.', 'abc-pricing-table' ); ?></p> 
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="ma_field p-4">
-						<input type="range" class="custom-range" id="apt_heading_size1" name="apt_heading_size" min="10" max="50" value="15" onchange="return ABC_PT_Admin.display_range_value(this.id, this.value);">
-						<span id="apt_heading_size1-value" class="badge badge-info pt-2 pb-2 pr-2 pl-2">15</span>
-					</div>
-				</div>
-			</div>
-			<div class="row pro-feature" style="display: none;">
-				<div class="col-md-4">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Feature Font Size', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-						<p><?php esc_html_e( 'Pricing Table [Features] Font Size.', 'abc-pricing-table' ); ?></p> 
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="ma_field p-4">
-						<input type="range" class="custom-range" id="apt_feature_size1" name="apt_feature_size" min="10" max="50" value="15" onchange="return ABC_PT_Admin.display_range_value(this.id, this.value);">
-						<span id="apt_feature_size1-value" class="badge badge-info pt-2 pb-2 pr-2 pl-2">15</span>
-					</div>
-				</div>
-			</div>
-			<div class="row pro-feature" style="display: none;">
-				<div class="col-md-4">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Button Text Font Size', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-						<p><?php esc_html_e( 'Pricing Button Text Font Size.', 'abc-pricing-table' ); ?></p> 
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="ma_field p-4">
-						<input type="range" class="custom-range" id="apt_button_size1" name="apt_button_size" min="10" max="50" value="15" onchange="return ABC_PT_Admin.display_range_value(this.id, this.value);">
-						<span id="apt_button_size1-value" class="badge badge-info pt-2 pb-2 pr-2 pl-2">15</span>
-					</div>
-				</div>
-			</div>
-			<div class="row pro-feature" style="display: none;">
-				<div class="col-md-4">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Open Link Tab', 'abc-pricing-table' ); ?><span style="color:red; font-size: 20px;">(Pro)</span></h5>
-						<h5><?php esc_html_e( 'You can set link open in same tab or in new tab.', 'abc-pricing-table' ); ?></p> 
-					</div>
-				</div>
-				<div class="col-md-8">
-					<div class="ma_field p-4">
-						<p class="switch-field em_size_field">
-							<input type="radio" name="pricing_link_tab" id="pricing_link_tab1" value="_self" checked>
-							<label for="pricing_link_tab1"><?php esc_html_e( 'Same', 'abc-pricing-table' ); ?></label>
-							<input type="radio" name="pricing_link_tab" id="pricing_link_tab2" value="_blank">
-							<label for="pricing_link_tab2"><?php esc_html_e( 'New', 'abc-pricing-table' ); ?></label>
-						</p>
-					</div>
-				</div>
-			</div>
+
 			
 			<div class="row pricing_iconpicker">
 				<div class="col-md-4">
@@ -512,29 +446,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 					</div>	
 				</div>	
 			</div>
-			<div class="row pro-feature" style="display: none;">
-				<div class="col-md-2">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Features Text Color', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-					</div>
-				</div>
-				<div class="col-md-4 pro-disable">
-					<div class="ma_field">
-						<input type="text" id="apt_feature_color" name="apt_feature_color" value="" default-color="#000">
-					</div>
-				</div>
-				<div class="col-md-2 pro-icon">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Icon Color', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-					</div>
-				</div>
-				<div class="col-md-4 pro-icon pro-disable">
-					<div class="ma_field">
-						<input type="text" id="apt_icon_color" name="apt_icon_color" value="" default-color="#000">
-					</div>
-				</div>
-			
-			</div>
+
 			
 		</div>
 		
@@ -654,28 +566,7 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 				</div>
 			</div>
 			
-			<div class="row pro-feature" style="display: none;">
-				<div class="col-md-2">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Features Text Color', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-					</div>
-				</div>
-				<div class="col-md-4 pro-disable">
-					<div class="ma_field">
-						<input type="text" id="apt_featured_text_color" name="apt_featured_text_color" value="" default-color="#000">
-					</div>
-				</div>
-				<div class="col-md-2 pro-icon">
-					<div class="ma_field_discription">
-						<h5><?php esc_html_e( 'Icon Color', 'abc-pricing-table' ); ?> <span style="color:red; font-size: 20px;">(Pro)</span></h5>
-					</div>
-				</div>
-				<div class="col-md-4 pro-icon pro-disable">
-					<div class="ma_field">
-						<input type="text" id="apt_featured_icon_color" name="apt_featured_icon_color" value="" default-color="#000">
-					</div>
-				</div>
-			</div>
+
 		</div>
 		<div class="bhoechie-tab-content">
 			<h1><?php esc_html_e( 'Custom Css', 'abc-pricing-table' ); ?></h1>
@@ -724,244 +615,4 @@ $pricing_post_settings = get_post_meta( $post->ID, 'apt_pricing_table_data_' . $
 		</div>
 	</div>
 
-	<script>
 
-	var pricing_table_design = jQuery('input[name="pricing_table_design"]:checked').val();
-	if(pricing_table_design == "template1") {
-		jQuery(".pricing_iconpicker").show();
-		jQuery(".pro-icon").show();
-	}
-	if(pricing_table_design == "template2") {
-		jQuery(".pricing_iconpicker").hide();
-		jQuery(".pro-icon").hide();
-	}
-	if(pricing_table_design == "template3") {
-		jQuery(".pricing_iconpicker").hide();
-		jQuery(".pro-icon").hide();
-	}
-	if(pricing_table_design == "template4") {
-		jQuery(".pricing_iconpicker").hide();
-		jQuery(".pro-icon").hide();
-	}
-		
-	jQuery(document).ready(function(){
-		jQuery('[data-toggle="tooltip"]').tooltip();  
-		
-		//toggle button on/off
-		jQuery('input[name="pricing_table_design"]').change(function(){
-			var pricing_table_design = jQuery('input[name="pricing_table_design"]:checked').val();
-			
-			if(pricing_table_design == "template1") {
-				jQuery(".pricing_iconpicker").show();
-				jQuery(".pro-icon").show();
-			}
-			
-			if(pricing_table_design == "template2") {
-				jQuery(".pricing_iconpicker").hide();
-				jQuery(".pro-icon").hide();
-			}
-			
-			if(pricing_table_design == "template3") {
-				jQuery(".pricing_iconpicker").hide();
-				jQuery(".pro-icon").hide();
-			}
-			
-			if(pricing_table_design == "template4") {
-				jQuery(".pricing_iconpicker").hide();
-				jQuery(".pro-icon").hide();
-			}
-
-		});
-		
-	});
-	
-	(function($) {
-		$(document).ready(function() {
-			// Add Color Picker 
-			$('#heading_text_color, #heading_background_color, #background_hover_color, #button_color, #button_heading_color, #button_hover_color, #apt_feature_color, #apt_icon_color, #feature_heading_text_color, #feature_heading_background_color, #feature_background_hover_color, #feature_button_color, #feature_button_heading_color, #feature_button_hover_color, #apt_featured_text_color, #apt_featured_icon_color').wpColorPicker();
-			
-			$(document).ajaxComplete(function() {
-				$('#heading_text_color, #heading_background_color, #button_color, #button_heading_color, #background_hover_color, #button_hover_color, #feature_heading_text_color, #feature_heading_background_color, #feature_background_hover_color, #feature_button_color, #feature_button_heading_color, #apt_feature_color, #apt_icon_color, #apt_featured_icon_color, #apt_featured_text_color, #feature_button_hover_color').wpColorPicker();
-			});
-
-			$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-				e.preventDefault();
-				$(this).siblings('a.active').removeClass("active");
-				$(this).addClass("active");
-				var index = $(this).index();
-				$("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-				$("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-			});
-
-			// Layout selection logic
-			var alwselectedlayout = $('[name=pricing_table_design]:checked').val();
-			function updateLayoutClasses(layout) {
-				$('.pricing_layout_one, .pricing_layout_two, .pricing_layout_three, .pricing_table_four').removeClass('team_layout');
-				if(layout == 'template1') $('.pricing_layout_one').addClass('team_layout');
-				if(layout == 'template2') $('.pricing_layout_two').addClass('team_layout');
-				if(layout == 'template3') $('.pricing_layout_three').addClass('team_layout');
-				if(layout == 'template4') $('.pricing_table_four').addClass('team_layout');
-			}
-			updateLayoutClasses(alwselectedlayout);
-
-
-		});
-
-		// Namespace for admin functions
-		window.ABC_PT_Admin = {
-			copy_shortcode: function() {
-				var copyText = document.getElementById("abc-pricing-shortcode");
-				if (copyText) {
-					copyText.select();
-					document.execCommand("copy");
-					$('#copy-msg').fadeIn(1000).fadeOut(2500);
-				}
-			},
-			add_new_column: function() {
-				var total_cols = $('#total_cols').val();
-				var columns_class_name = "column_" + total_cols;
-				var iconpick_class_name = "iconpick_" + total_cols;
-				var new_col_html = ''+
-				'<div id="columns[]" class="pri_main_div col-md-4 '+columns_class_name+'">' +
-					'<div class="pri_head">' +
-						'<div class="switch-field em_size_field col-md-6" data-toggle="tooltip" data-placement="top" title="This Table Will Be Featured" aria-hidden="true">' +
-							'<input type="radio" name="featured_button['+total_cols+']" id="featured_button1['+total_cols+']" value="true" >' +
-								'<label for="featured_button1['+total_cols+']"><?php esc_html_e( "Yes", "abc-pricing-table" ); ?></label>' +
-							'<input type="radio" name="featured_button['+total_cols+']" id="featured_button2['+total_cols+']" value="false" checked >' +
-								'<label for="featured_button2['+total_cols+']"><?php esc_html_e( "No", "abc-pricing-table" ); ?></label>' +
-						'</div>' +	
-						'<a data-toggle="tooltip" data-placement="top" title="Delete table" class="time" id="pri_delete" onclick=ABC_PT_Admin.delete_column("'+columns_class_name+'");><span class="dashicons dashicons-trash"></span></a>' +	
-						'<input type="text" id="pricing_name" class="text" name="pricing_name[]" placeholder="<?php esc_html_e( "Name", "abc-pricing-table" ); ?>" value="">' +
-					'</div>' +
-					'<ul>' +
-						'<li>' +
-							'<input type="text" id="pricing_price[]" name="pricing_price[]"" class="text" placeholder="<?php esc_html_e( 'Pricing', "abc-pricing-table" ); ?>" value="">' +
-						'</li>' +
-						'<li>' +
-							'<input type="text" id="pricing_plan[]" name="pricing_plan[]" class="text" placeholder="<?php esc_html_e( 'Pricing Plan', "abc-pricing-table" ); ?>" value="">' +
-						'</li>' +
-						'<li class="features">' +
-							'<textarea type="text" id="pricing_features[]" name="pricing_features[]" class="text" placeholder="<?php esc_html_e( 'Pricing Features', 'abc-pricing-table' ); ?>" rows="7"></textarea>' +
-						'</li>' +
-						'<li>' +
-							'<input type="text" id="pricing_btn_text[]" name="pricing_btn_text[]" class="text" placeholder="<?php esc_html_e( 'Button Text', 'abc-pricing-table' ); ?>" value="">' +
-						'</li>' +
-						'<li>' +
-							'<input type="text" id="pricing_btn_url[]" name="pricing_btn_url[]" class="text" placeholder="<?php esc_html_e( 'Button Url', 'abc-pricing-table' ); ?>" value="">' +
-						'</li>' +
-					'</ul>' +
-				'</div>';
-				
-				var new_icon_picker = '<button type="button" value="" id="pricing_icon_pick[]" name="pricing_icon_pick[]" class="'+iconpick_class_name+' '+columns_class_name+' target_picker btn btn-default" data-iconset="fontawesome" data-icon="fa-wifi" role="iconpicker"></button>';
-				
-				$('#iconpicker-container').append(new_icon_picker);
-				$('#pricing-container').append(new_col_html);
-				
-				var current_total = parseInt($('#total_cols').val());
-				$('#total_cols').val(current_total + 1);
-				$('[data-toggle="tooltip"]').tooltip();
-				$('.target_picker').iconpicker();
-			},
-			delete_column: function(col_id) {
-				if (confirm('Are sure to delete this columns from table?')) {
-					$( "."+ col_id ).fadeOut( 1000, function() {
-						$( "."+ col_id ).remove();
-					});
-				}
-			},
-			display_range_value: function(id, value) {
-				var slider = document.getElementById(id);
-				var output = document.getElementById(id+"-value");
-				if (slider && output) {
-					output.innerHTML = slider.value;
-					slider.oninput = function() {
-						output.innerHTML = this.value;
-					}
-				}
-			}
-		};
-	})(jQuery);
-
-(function($) {
-	$(document).ready(function() {
-		var alwselectedlayout = $('[name=pricing_table_design]:checked').val();
-		if(alwselectedlayout == 'template1') {
-			$('.pricing_layout_one').addClass('team_layout'); 	
-		} else {
-			$('.pricing_layout_one').removeClass('team_layout');	
-		}
-		if(alwselectedlayout == 'template2') {
-			$('.pricing_layout_two').addClass('team_layout'); 
-		} else {
-			$('.pricing_layout_two').removeClass('team_layout');
-		}
-		if(alwselectedlayout == 'template3') {
-			$('.pricing_layout_three').addClass('team_layout'); 
-		} else {
-			$('.pricing_layout_three').removeClass('team_layout'); 
-		}
-		if(alwselectedlayout == 'template4') {
-			$('.pricing_table_four').addClass('team_layout'); 
-		} else {
-			$('.pricing_table_four').removeClass('team_layout'); 
-		}
-
-		$('input[type=radio][name=pricing_table_design]').change(function() {
-			var alwselectedlayout = $('[name=pricing_table_design]:checked').val();
-			if(alwselectedlayout == 'template1') {
-				$('.pricing_layout_one').addClass('team_layout');	
-				$('#heading_text_color').iris('color', '#ffffff');
-				$('#heading_background_color').iris('color', '#962744');
-				$('#background_hover_color').iris('color', '#ff4266');
-				$('#button_color').iris('color', '#962744');
-				$('#button_heading_color').iris('color', '#ffffff');
-				$('#button_hover_color').iris('color', '#ff4266');
-			} else {
-				$('.pricing_layout_one').removeClass('team_layout'); 
-			}
-			if(alwselectedlayout == 'template2') {
-				$('.pricing_layout_two').addClass('team_layout'); 
-				$('#heading_text_color').iris('color', '#ffffff');
-				$('#heading_background_color').iris('color', '#F26547');
-				$('#background_hover_color').iris('color', '#F28168');
-				$('#button_color').iris('color', '#F26547');
-				$('#button_heading_color').iris('color', '#ffffff');
-				$('#button_hover_color').iris('color', '#F28168');
-			} else {
-				$('.pricing_layout_two').removeClass('team_layout'); 
-			}
-			if(alwselectedlayout == 'template3') {
-				$('.pricing_layout_three').addClass('team_layout'); 
-				$('#heading_text_color').iris('color', '#ffffff');
-				$('#heading_background_color').iris('color', '#1E73BE');
-				$('#background_hover_color').iris('color', '#4D4D4D');
-				$('#button_color').iris('color', '#1E73BE');
-				$('#button_heading_color').iris('color', '#ffffff');
-				$('#button_hover_color').iris('color', '#4D4D4D');
-			} else {
-				$('.pricing_layout_three').removeClass('team_layout'); 
-			}
-			if(alwselectedlayout == 'template4') {
-				$('.pricing_table_four').addClass('team_layout'); 
-				$('#heading_text_color').iris('color', '#ffffff');
-				$('#heading_background_color').iris('color', '#1ABC9C');
-				$('#background_hover_color').iris('color', '#1ABC9C');
-				$('#button_color').iris('color', '#1ABC9C');
-				$('#button_heading_color').iris('color', '#ffffff');
-				$('#button_hover_color').iris('color', '#1ABC9C');
-			} else {
-				$('.pricing_table_four').removeClass('team_layout'); 
-			}
-		});
-
-		$("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
-			e.preventDefault();
-			$(this).siblings('a.active').removeClass("active");
-			$(this).addClass("active");
-			var index = $(this).index();
-			$("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
-			$("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
-		});
-	});
-})(jQuery);
-</script>

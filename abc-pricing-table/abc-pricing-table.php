@@ -6,7 +6,7 @@ if (!defined('ABSPATH')) {
 Plugin Name: Pricing Table – Responsive & Easy Pricing Table
 Plugin URI: http://awplife.com/code
 Description: A clean and responsive pricing table plugin for WordPress. Easily create comparison tables with multiple templates and shortcode support.
-Version: 1.5.3
+Version: 1.5.4
 Requires PHP: 7.2
 Author: A WP Life
 Author URI: http://awplife.com/
@@ -27,13 +27,13 @@ if (!class_exists('apt_pricingtable')) {
 		protected function _constants()
 		{
 			// Plugin Version
-			define('APT_PLUGIN_VER', '1.5.3');
+			define('APT_PLUGIN_VER', '1.5.4');
 
 			// Plugin Text Domain
 			define('APT_TXTDM', 'abc-pricing-table');
 
 			// Plugin Name
-			define('APT_PLUGIN_NAME', __('Pricing', 'abc-pricing-table'));
+			define('APT_PLUGIN_NAME', 'Pricing Table');
 
 			// Plugin Slug
 			define('APT_PLUGIN_SLUG', 'abc-pricing');
@@ -50,33 +50,24 @@ if (!class_exists('apt_pricingtable')) {
 
 		protected function _hooks()
 		{
-			// Load text domain
-			add_action('plugins_loaded', array($this, 'load_textdomain'));
-
 			// add testimonial menu item, change menu filter for multisite
 			add_action('admin_menu', array($this, 'pricing_menu'), 10);
 
 			add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
 
-			// Create pricing table  Custom Post
+			// Create pricing table Custom Post
 			add_action('init', array($this, 'Pricing'));
 
 			// Add meta box to custom post
 			add_action('add_meta_boxes', array($this, 'admin_add_meta_box'));
 
-			// loaded during admin init
-			add_action('admin_init', array($this, 'admin_add_meta_box'));
-
-			add_action('save_post', array(&$this, '_apt_save_settings'));
-
-			// Shortcode Compatibility in Text Widgets
-			add_action('widget_text', 'do_shortcode');
+			add_action('save_post', array($this, '_apt_save_settings'));
 
 			// add pfg cpt shortcode column - manage_{$post_type}_posts_columns
-			add_filter('manage_abc-pricing_posts_columns', array(&$this, 'set_abc_pricing_shortcode_column_name'));
+			add_filter('manage_abc-pricing_posts_columns', array($this, 'set_abc_pricing_shortcode_column_name'));
 
 			// add pfg cpt shortcode column data - manage_{$post_type}_posts_custom_column
-			add_action('manage_abc-pricing_posts_custom_column', array(&$this, 'custom_abc_pricing_shodrcode_data'), 10, 2);
+			add_action('manage_abc-pricing_posts_custom_column', array($this, 'custom_abc_pricing_shodrcode_data'), 10, 2);
 
 		} // end of hook function
 
@@ -105,38 +96,24 @@ if (!class_exists('apt_pricingtable')) {
 			switch ($column) {
 				case 'abc_pricing_shortcode':
 					echo "<input type='text' class='button button-primary' id='abc-pricing-shortcode-" . esc_attr($post_id) . "' value='[APT id=" . esc_attr($post_id) . "]' style='font-weight:bold; background-color:#32373C; color:#FFFFFF; text-align:center;' />";
-					echo "<input type='button' class='button button-primary' onclick='return ABC_PT_CopyShortcode" . esc_attr($post_id) . "();' readonly value='Copy' style='margin-left:4px;' />";
+					echo "<input type='button' class='button button-primary' onclick='return ABC_PT_CopyShortcode(" . esc_attr($post_id) . ");' readonly value='Copy' style='margin-left:4px;' />";
 					echo "<span id='copy-msg-" . esc_attr($post_id) . "' class='button button-primary' style='display:none; background-color:#32CD32; color:#FFFFFF; margin-left:4px; border-radius: 4px;'>copied</span>";
-					echo '<script>
-						function ABC_PT_CopyShortcode' . esc_attr($post_id) . "() {
-							var copyText = document.getElementById('abc-pricing-shortcode-" . esc_attr($post_id) . "');
-							copyText.select();
-							document.execCommand('copy');
-							
-							//fade in and out copied message
-							jQuery('#copy-msg-" . esc_attr($post_id) . "').fadeIn('1000', 'linear');
-							jQuery('#copy-msg-" . esc_attr($post_id) . "').fadeOut(2500,'swing');
-						}
-						</script>
-					";
 					break;
 			}
 		}
 
-
-		public function load_textdomain()
-		{
-			load_plugin_textdomain('abc-pricing-table', false, dirname(plugin_basename(__FILE__)) . '/languages');
-		}
-
 		public function pricing_menu()
 		{
-			add_submenu_page('edit.php?post_type=' . APT_PLUGIN_SLUG, __('Our Plugins', 'abc-pricing-table'), __('Our Plugins', 'abc-pricing-table'), 'administrator', 'abc-pricing-our-plugins', array($this, '_abcpt_our_plugins_page'));
-			add_submenu_page('edit.php?post_type=' . APT_PLUGIN_SLUG, __('Our Themes', 'abc-pricing-table'), __('Our Themes', 'abc-pricing-table'), 'administrator', 'abc-pricing-our-themes', array($this, '_abcpt_our_themes_page'));
+			add_submenu_page('edit.php?post_type=' . APT_PLUGIN_SLUG, __('Our Plugins', 'abc-pricing-table'), __('Our Plugins', 'abc-pricing-table'), 'manage_options', 'abc-pricing-our-plugins', array($this, '_abcpt_our_plugins_page'));
+			add_submenu_page('edit.php?post_type=' . APT_PLUGIN_SLUG, __('Our Themes', 'abc-pricing-table'), __('Our Themes', 'abc-pricing-table'), 'manage_options', 'abc-pricing-our-themes', array($this, '_abcpt_our_themes_page'));
 		}
 
 		public function admin_enqueue_scripts($hook)
 		{
+			if ('edit.php' === $hook && isset($_GET['post_type']) && 'abc-pricing' === $_GET['post_type']) {
+				wp_enqueue_script('apt-admin-list-js', APT_PLUGIN_URL . 'assets/js/apt-admin-list.js', array('jquery'), APT_PLUGIN_VER, true);
+			}
+
 			if ('post-new.php' === $hook || 'post.php' === $hook) {
 				if ('abc-pricing' === get_post_type()) {
 					wp_enqueue_script('apt-popper-min-js', APT_PLUGIN_URL . 'assets/js/popper.min.js', array('jquery'), '2.0', true);
@@ -144,6 +121,18 @@ if (!class_exists('apt_pricingtable')) {
 					wp_enqueue_script('apt-bootstrap-iconset-all-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap-iconpicker-iconset-all.min.js', array('jquery'), '1.10.0', true);
 					wp_enqueue_script('apt-bootstrap-iconpicker-min-js', APT_PLUGIN_URL . 'assets/js/bootstrap-iconpicker.min.js', array('jquery'), '1.10.0', true);
 					wp_enqueue_script('apt-color-picker-js', APT_PLUGIN_URL . 'assets/js/apt-color-picker.js', array('wp-color-picker'), '1.0.0', true);
+					wp_enqueue_script('apt-admin-js', APT_PLUGIN_URL . 'assets/js/apt-admin.js', array('jquery', 'wp-color-picker', 'apt-bootstrap-min-js', 'apt-bootstrap-iconpicker-min-js'), APT_PLUGIN_VER, true);
+					wp_localize_script('apt-admin-js', 'apt_admin_i18n', array(
+						'yes' => __('Yes', 'abc-pricing-table'),
+						'no' => __('No', 'abc-pricing-table'),
+						'name' => __('Name', 'abc-pricing-table'),
+						'pricing' => __('Pricing', 'abc-pricing-table'),
+						'pricing_plan' => __('Pricing Plan', 'abc-pricing-table'),
+						'pricing_features' => __('Pricing Features', 'abc-pricing-table'),
+						'button_text' => __('Button Text', 'abc-pricing-table'),
+						'button_url' => __('Button Url', 'abc-pricing-table'),
+						'confirm_delete' => __('Are sure to delete this columns from table?', 'abc-pricing-table'),
+					));
 					wp_enqueue_style('wp-color-picker');
 					wp_enqueue_style('apt-bootstrap-css', APT_PLUGIN_URL . 'assets/css/pricing-admin-bootstrap.css', array(), '4.3.1');
 					wp_enqueue_style('apt-bootstrap-iconpicker-css', APT_PLUGIN_URL . 'assets/css/bootstrap-iconpicker.min.css', array(), '1.10.0');
@@ -180,7 +169,6 @@ if (!class_exists('apt_pricingtable')) {
 			);
 
 			$args = array(
-				'labels' => __('Pricing Table', 'abc-pricing-table'),
 				'description' => __('Description', 'abc-pricing-table'),
 				'labels' => $labels,
 				'public' => true,
@@ -201,9 +189,9 @@ if (!class_exists('apt_pricingtable')) {
 
 		public function admin_add_meta_box()
 		{
-			add_meta_box(__('Add Pricing Table', 'abc-pricing-table'), __('Add Pricing Table', 'abc-pricing-table'), array(&$this, 'apt_pricing_upload'), 'abc-pricing', 'normal', 'default');
-			add_meta_box(__('Upgrade Pricing Table Pro', 'abc-pricing-table'), __('Upgrade Pricing Table Pro', 'abc-pricing-table'), array(&$this, 'apt_upgrade_pro'), 'abc-pricing', 'side', 'default');
-			add_meta_box(__('Rate Our Plugin', 'abc-pricing-table'), __('Rate Our Plugin', 'abc-pricing-table'), array(&$this, 'apt_rate_plugin'), 'abc-pricing', 'side', 'default');
+			add_meta_box('apt-pricing-table-settings', __('Add Pricing Table', 'abc-pricing-table'), array($this, 'apt_pricing_upload'), 'abc-pricing', 'normal', 'default');
+			add_meta_box('apt-upgrade-pro', __('Upgrade Pricing Table Pro', 'abc-pricing-table'), array($this, 'apt_upgrade_pro'), 'abc-pricing', 'side', 'default');
+			add_meta_box('apt-rate-plugin', __('Rate Our Plugin', 'abc-pricing-table'), array($this, 'apt_rate_plugin'), 'abc-pricing', 'side', 'default');
 		}
 		/** meta upgrade pro **/
 		public function apt_upgrade_pro()
@@ -356,39 +344,13 @@ if (!class_exists('apt_pricingtable')) {
 		// css & JS
 		wp_enqueue_script('jquery');
 		wp_register_script('apt-bootstrap-min-js', plugin_dir_url(__FILE__) . 'assets/js/bootstrap.min.js');
-		wp_register_style('apt-pricing-frontend-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/pricing-frontend-bootstrap.css');
-		wp_register_style('apt-all-css', plugin_dir_url(__FILE__) . 'assets/css/all.css');
+		wp_enqueue_style('apt-pricing-frontend-bootstrap-css', plugin_dir_url(__FILE__) . 'assets/css/pricing-frontend-bootstrap.css');
+		wp_enqueue_style('apt-all-css', plugin_dir_url(__FILE__) . 'assets/css/all.css');
 		// css & JS
 	}
 	add_action('wp_enqueue_scripts', 'awplife_apt_register_scripts');
 
-	// Plugin Recommend
-	add_action('tgmpa_register', 'APT_TXTDM_plugin_recommend');
-	function APT_TXTDM_plugin_recommend()
-	{
-		$plugins = array(
-			array(
-				'name' => 'Portfolio Filter Gallery',
-				'slug' => 'portfolio-filter-gallery',
-				'required' => false,
-			),
-			array(
-				'name' => 'Blog Filter & Post Portfolio',
-				'slug' => 'blog-filter',
-				'required' => false,
-			),
-			array(
-				'name' => 'Team Builder Member Showcase',
-				'slug' => 'team-builder-member-showcase',
-				'required' => false,
-			),
-		);
-		tgmpa($plugins);
-	}
-
-
 	$new_pricingtable_object = new apt_pricingtable();
-	require_once 'shotcode.php';
-	require_once 'class-tgm-plugin-activation.php';
+	require_once 'shortcode.php';
 }
 ?>

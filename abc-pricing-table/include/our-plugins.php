@@ -12,7 +12,7 @@ $author_slug = 'awordpresslife';
 $transient_key = 'abc_pt_our_plugins_data';
 
 // Force refresh the data to apply new categorization rules
-if ( isset($_GET['refresh_plugins']) ) {
+if ( isset($_GET['refresh_plugins']) && isset($_GET['_wpnonce']) && wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['_wpnonce'] ) ), 'apt_refresh_plugins' ) ) {
     delete_transient( $transient_key );
 }
 
@@ -211,7 +211,7 @@ usort( $filtered_plugins, function ( $a, $b ) {
         <button class="ig-filter-btn" data-filter="social"><?php esc_html_e( 'Social Media', 'abc-pricing-table' ); ?></button>
         <button class="ig-filter-btn" data-filter="technical"><?php esc_html_e( 'Technical Tools', 'abc-pricing-table' ); ?></button>
         
-        <a href="<?php echo esc_url( add_query_arg( 'refresh_plugins', '1' ) ); ?>" class="ig-refresh-link" title="<?php esc_attr_e( 'Sync with WordPress.org', 'abc-pricing-table' ); ?>">
+        <a href="<?php echo esc_url( wp_nonce_url( add_query_arg( 'refresh_plugins', '1' ), 'apt_refresh_plugins' ) ); ?>" class="ig-refresh-link" title="<?php esc_attr_e( 'Sync with WordPress.org', 'abc-pricing-table' ); ?>">
             <span class="dashicons dashicons-update"></span>
         </a>
     </nav>
